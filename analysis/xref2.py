@@ -1,9 +1,10 @@
 """Find real code references to the level table by locating absolute-long
 operands and disassembling the instruction that owns them."""
+import os
 from capstone import *
 import struct, re
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 d = open(SRC, 'rb').read()
 N = len(d)
 

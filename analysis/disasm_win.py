@@ -1,6 +1,7 @@
 """Disassemble code windows around references to the level-up table."""
+import os
 from capstone import *
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 d = open(SRC, 'rb').read()
 md = Cs(CS_ARCH_M68K, CS_MODE_BIG_ENDIAN | CS_MODE_M68K_000)
 

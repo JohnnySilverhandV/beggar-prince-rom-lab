@@ -37,8 +37,8 @@ Two independent data blocks are patched.
 """
 import os, struct
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
-OUTDIR = r"C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/md_analysis/out"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
+OUTDIR = os.environ.get("OUT", "out")   # 成品输出目录
 os.makedirs(OUTDIR, exist_ok=True)
 
 TAB_BASE = 0x4043A        # HP(L) at +0, MP(L) at +2, EXP(L) at +4

@@ -1,7 +1,8 @@
 """Multi-format tile renderer, to identify how this ROM stores graphics/charset."""
+import os
 import struct
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 R16 = [255, 238, 221, 204, 187, 170, 153, 136, 119, 102, 85, 68, 51, 34, 17, 0]
 
 

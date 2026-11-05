@@ -1,8 +1,9 @@
 """Locate the level-up experience table inside the ROM by searching for the
 known numeric sequence (from the GameFAQs Level Up Guide)."""
+import os
 import struct, sys
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 d = open(SRC, 'rb').read()
 N = len(d)
 

@@ -1,10 +1,11 @@
 """Linear-sweep the ROM with capstone (M68K) and collect instructions whose
 absolute operands point into the level-up table region (0x40300-0x40600)."""
+import os
 from capstone import *
 from capstone.m68k import *
 import struct
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 d = open(SRC, 'rb').read()
 
 md = Cs(CS_ARCH_M68K, CS_MODE_BIG_ENDIAN | CS_MODE_M68K_000)

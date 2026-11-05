@@ -3,11 +3,12 @@
 输出到桌面文件夹：新乞丐王子_视频物料/
 依赖：PIL（已装）。无任何第三方绘图库。
 """
+import os
 import struct, os
 from PIL import Image, ImageDraw, ImageFont
 
-ROM = "E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
-OUT = "C:/Users/Administrator/Desktop/新乞丐王子_视频物料"
+ROM = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
+OUT = os.environ.get("OUT", "新乞丐王子_视频物料")   # 输出目录
 os.makedirs(OUT, exist_ok=True)
 
 d = open(ROM, "rb").read()

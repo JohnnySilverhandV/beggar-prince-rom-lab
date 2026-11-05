@@ -1,6 +1,6 @@
 {
   "_说明": "演示用：只把升级所需经验除以 10（复刻当年轻度版的思路）。--dry-run 先看效果",
-  "src": "E:/BaiduNetdiskDownload/xqgwz/xqgwz.md",
+  "src": "xqgwz.md",
   "out": "demo_out/demo_exp_only.bin",
   "ops": [
     {

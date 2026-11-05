@@ -3,9 +3,10 @@
 Strategy: for every (start, stride, field_offset) combination, extract the column
 and measure how well it matches the known exp sequence from the GameFAQs guide.
 """
+import os
 import struct
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 d = open(SRC, 'rb').read()
 
 GUIDE = [50,152,232,370,470,580,710,880,920,1000,1240,1510,1950,

@@ -1,7 +1,7 @@
 {
   "_note": "魔法全屏秒杀效果 —— 叠在「强化A_轻度_攻击版」之上。只改 $3D578 起的 6 个 float（多敌伤害分摊系数），该表全 ROM 仅被 0xD1640 一条指令引用（魔法伤害例程 $0D128E 内），故只影响伤害型魔法，不碰物理攻击/敌人。",
-  "src": "C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/md_analysis/out/xqgwz_强化A_轻度_攻击版.bin",
-  "out": "C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/md_analysis/out/xqgwz_轻度_魔法秒杀版.bin",
+  "src": "out/xqgwz_强化A_轻度_攻击版.bin",
+  "out": "out/xqgwz_轻度_魔法秒杀版.bin",
   "ops": [
     {
       "name": "魔法伤害分摊系数 1.0/0.7/0.5/0.4/0.3/0.2 -> 全部 200.0",

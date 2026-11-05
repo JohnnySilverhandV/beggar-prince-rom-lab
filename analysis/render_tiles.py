@@ -1,9 +1,9 @@
 """Mega Drive 4bpp planar tile renderer -> 24-bit BMP (no third-party deps)."""
+import os
 import struct
 import sys
 
-SRC = r"E:/BaiduNetdiskDownload/xqgwz/xqgwz.md"
-
+SRC = os.environ.get("ROM", "xqgwz.md")   # 原版 ROM 路径，用环境变量 ROM 覆盖
 # 16-level grayscale palette (index 0 = white .. 15 = black)
 RAMP = [255, 238, 221, 204, 187, 170, 153, 136, 119, 102, 85, 68, 51, 34, 17, 0]
 

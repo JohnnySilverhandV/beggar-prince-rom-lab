@@ -12,22 +12,21 @@
 ## 一、30 秒上手：四步走
 
 ```bash
-# 0) 先备好两个解释器路径（见第四节）
-PY=...        # 通用：不需要第三方库
-PYCS=...      # 反汇编：需要 capstone
+# 0) 一个解释器就够；反汇编功能另外装 capstone（见第四节）
+python -m pip install capstone        # 只有 xref 的 --disasm 需要
 
 # 1) 探壳：这是什么平台？数据压缩了吗？
-$PY rom_probe.py <rom文件>
+python rom_probe.py <rom文件>
 
 # 2) 定位表：用攻略里的数值序列当指纹
-$PY find_table.py <rom文件> --seq 370,470,580,710,880
+python find_table.py <rom文件> --seq 370,470,580,710,880
 
 # 3) 定语义：谁在读这张表？
-$PYCS xref.py <rom文件> ref 0x4043E
+python xref.py <rom文件> ref 0x4043E
 
 # 4) 打补丁：用 JSON 描述怎么改，自动 diff 校验
-$PY patch_table.py plan.json --dry-run   # 先看效果
-$PY patch_table.py plan.json             # 确认无误再写文件
+python patch_table.py plan.json --dry-run   # 先看效果
+python patch_table.py plan.json             # 确认无误再写文件
 ```
 
 **四步里最关键的是第 2 步**——只要拿到一串"表里的真实数值"，剩下的都是机械工作。
@@ -40,9 +39,8 @@ $PY patch_table.py plan.json             # 确认无误再写文件
 > 游戏名是 `<游戏名>`，平台是 `<世嘉MD / SFC / GBA / FC ...>`。
 > 我想改的是：`<具体需求，例如：升级经验÷3、初始攻击力100、HP成长翻倍>`。
 >
-> 工具箱在 `C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/rom_toolkit/`，
-> 里面有 rom_probe.py / find_table.py / xref.py / patch_table.py 和一个
-> START_HERE.md（说明 + 实战范例）。请按里面的四步流程来：
+> 工具箱在 `<工具箱目录>/rom_toolkit/`，里面有 rom_probe.py / find_table.py /
+> xref.py / patch_table.py 和一个 README.md（说明 + 实战范例）。请按里面的四步流程来：
 > 先探壳认平台，再用攻略数值当指纹定位表，用 xref 确认引用方，
 > 最后用 patch_table.py 打补丁并逐字节 diff 校验。
 >
@@ -71,17 +69,17 @@ $PY patch_table.py plan.json             # 确认无误再写文件
 
 ## 四、环境
 
-| 用途 | 解释器路径 | 依赖 |
+| 用途 | 解释器 | 依赖 |
 |---|---|---|
-| 跑 `rom_probe.py` / `find_table.py` / `patch_table.py` | `C:/Users/Administrator/.workbuddy/binaries/python/versions/3.13.12/python.exe` | 无（纯标准库） |
-| 跑 `xref.py` 的**反汇编功能** | `C:/Users/Administrator/.workbuddy/binaries/python/envs/default/Scripts/python.exe` | capstone 5.0.7 ✅ 已装 |
+| 跑 `rom_probe.py` / `find_table.py` / `patch_table.py` | 任意 Python 3.9+（`python`） | 无（纯标准库） |
+| 跑 `xref.py` 的**反汇编功能** | 同一个 `python` | `capstone`（4.0+，实测 5.0.7） |
 
-`xref.py` 用 3.13.12 也能跑（引用扫描不受影响），只是看不到助记符。
+`xref.py` 不装 capstone 也能跑：引用扫描不受影响，只是看不到助记符。
 
 需要补装反汇编库时：
 
 ```bash
-"C:/Users/Administrator/.workbuddy/binaries/python/envs/default/Scripts/pip.exe" install capstone
+python -m pip install capstone
 ```
 
 ---
@@ -284,7 +282,7 @@ python patch_table.py plan.json                 # 真打补丁
 
 ```
 rom_toolkit/
-├── START_HERE.md          ← 你正在看的这份
+├── README.md              ← 你正在看的这份
 ├── rom_probe.py           ← 探壳：认平台 / 熵图 / 字符串
 ├── find_table.py          ← 指纹定位：用数值序列找表
 ├── xref.py                ← 交叉引用 / 反汇编（需 capstone）
