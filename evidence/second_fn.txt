@@ -1,0 +1,72 @@
+===== 0xD171A-0xD1900 (第二函数) =====
+  00d171a  4e 56 ff f8              link.w   a6, #$fff8
+  00d171e  48 e7 3f 30              movem.l  d2-d7/a2-a3, -(a7)
+  00d1722  2d 7c 00 00 00 00 ff fa  move.l   #$0, -$6(a6)
+  00d172a  70 00                    moveq    #$0, d0
+  00d172c  10 39 00 ff 03 8b        move.b   $ff038b.l, d0
+  00d1732  e9 48                    lsl.w    #$4, d0
+  00d1734  20 7c 00 04 01 fa        movea.l  #$401fa, a0
+  00d173a  41 f0 00 00              lea.l    (a0, d0.w), a0
+  00d173e  24 48                    movea.l  a0, a2
+  00d1740  7c 00                    moveq    #$0, d6
+  00d1742  1c 39 00 ff 02 ee        move.b   $ff02ee.l, d6
+  00d1748  70 00                    moveq    #$0, d0
+  00d174a  10 2a 00 05              move.b   $5(a2), d0
+  00d174e  4e b9 00 0e 51 bc        jsr      $e51bc.l
+  00d1754  70 00                    moveq    #$0, d0
+  00d1756  10 2a 00 06              move.b   $6(a2), d0
+  00d175a  4e b9 00 0e 52 02        jsr      $e5202.l
+  00d1760  4e b9 00 0e 51 78        jsr      $e5178.l
+  00d1766  2f 3c 00 00 00 00        move.l   #$0, -(a7)
+  00d176c  2f 3c 40 24 00 00        move.l   #$40240000, -(a7)
+  00d1772  4e b9 00 0e 50 9c        jsr      $e509c.l
+  00d1778  30 06                    move.w   d6, d0
+  00d177a  48 c0                    ext.l    d0
+  00d177c  4e b9 00 0e 51 9e        jsr      $e519e.l
+  00d1782  4e b9 00 0e 50 ba        jsr      $e50ba.l
+  00d1788  30 06                    move.w   d6, d0
+  00d178a  48 c0                    ext.l    d0
+  00d178c  4e b9 00 0e 51 9e        jsr      $e519e.l
+  00d1792  4e b9 00 0e 50 ba        jsr      $e50ba.l
+  00d1798  4e b9 00 0e 50 68        jsr      $e5068.l
+  00d179e  4e b9 00 0e 51 0c        jsr      $e510c.l
+  00d17a4  3e 00                    move.w   d0, d7
+  00d17a6  10 39 00 ff 03 8a        move.b   $ff038a.l, d0
+  00d17ac  b0 2a 00 0a              cmp.b    $a(a2), d0
+  00d17b0  64 06                    bcc.b    $d17b8
+  00d17b2  70 ff                    moveq    #$ff, d0
+  00d17b4  60 00 04 b4              bra.w    $d1c6a
+  00d17b8  be 79 00 ff 02 f6        cmp.w    $ff02f6.l, d7
+  00d17be  6f 06                    ble.b    $d17c6
+  00d17c0  70 fe                    moveq    #$fe, d0
+  00d17c2  60 00 04 a6              bra.w    $d1c6a
+  00d17c6  48 78 ff ff              pea.l    $ffff.w
+  00d17ca  4e b9 00 0d 66 44        jsr      $d6644.l
+  00d17d0  58 8f                    addq.l   #$4, a7
+  00d17d2  3d 40 ff fe              move.w   d0, -$2(a6)
+  00d17d6  4a aa 00 0c              tst.l    $c(a2)
+  00d17da  67 1c                    beq.b    $d17f8
+  00d17dc  48 78 00 01              pea.l    $1.w
+  00d17e0  4e b9 00 0c c8 38        jsr      $cc838.l
+  00d17e6  20 6a 00 0c              movea.l  $c(a2), a0
+  00d17ea  4e 90                    jsr      (a0)
+  00d17ec  48 78 00 00              pea.l    $0.w
+  00d17f0  4e b9 00 0c c8 38        jsr      $cc838.l
+  00d17f6  50 8f                    addq.l   #$8, a7
+  00d17f8  42 43                    clr.w    d3
+  00d17fa  70 00                    moveq    #$0, d0
+  00d17fc  10 39 00 ff 03 8b        move.b   $ff038b.l, d0
+  00d1802  72 1d                    moveq    #$1d, d1
+  00d1804  90 81                    sub.l    d1, d0
+  00d1806  72 06                    moveq    #$6, d1
+  00d1808  b0 81                    cmp.l    d1, d0
+  00d180a  62 00 04 26              bhi.w    $d1c32
+  00d180e  d0 80                    add.l    d0, d0
+  00d1810  30 3b 08 06              move.w   $d1818(pc, d0.l), d0
+  00d1814  4e fb 00 02              jmp      $d1818(pc, d0.w)
+
+===== callers of 0xD171A =====
+  00d458e  jsr    jsr abs.l
+
+===== 0xD49F0-0xD4B00 (学魔法) =====
+  (无法解码，可能起始位置不在指令边界上)

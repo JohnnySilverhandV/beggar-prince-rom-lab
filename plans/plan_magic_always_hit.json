@@ -1,0 +1,10 @@
+{
+  "_note": "魔法必中 —— 叠在「xqgwz_轻度_魔法秒杀版」之上。$0D110C 是玩家施法的命中判定函数。已确认：当前魔法ID $FF038B 全 ROM 只有 $D4540 一处写入，而 $D4540 位于我方施法入口 $D4500 内（从我方队伍基址 $FF00D2 取角色指针），敌人施法不走这条路径 —— 因此改这里的命中率只影响玩家。",
+  "_logic": "函数尾部判定为: d4 = 命中率, d5 = rand(0,100); if (d5 > d4) miss。原本 d4 走两条路：命中基数较高时固定 99（$D1212 moveq #$63,d4），否则按公式算（$D126C move.w d0,d4）。两处都改成 moveq #$7f (127)，则 d4 恒为 127 > rand 上界，必定命中。两处替换均为 2 字节等长，不移动任何代码。",
+  "src": "C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/md_analysis/out/xqgwz_轻度_魔法秒杀版.bin",
+  "out": "C:/Users/Administrator/WorkBuddy/2026-10-14-11-48-43/md_analysis/out/xqgwz_轻度_魔法秒杀必中版.bin",
+  "ops": [
+    { "name": "命中率高分支: d4 = 99 -> 127", "bytes": "0xD1212", "hex": "787f" },
+    { "name": "命中率公式分支: d4 = 公式结果 -> 固定 127", "bytes": "0xD126C", "hex": "787f" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "_说明": "演示用：只把升级所需经验除以 10（复刻当年轻度版的思路）。--dry-run 先看效果",
+  "src": "E:/BaiduNetdiskDownload/xqgwz/xqgwz.md",
+  "out": "demo_out/demo_exp_only.bin",
+  "ops": [
+    {
+      "name": "升级所需经验 (Lv1..Lv28，末项是 9999 哨兵)",
+      "base": "0x4043E",
+      "stride": 6,
+      "count": 28,
+      "type": "u16be",
+      "expr": "round(v / 10)",
+      "clamp": [1, 9999]
+    },
+    {
+      "name": "武器攻击档位：×2+40，并让每组内部单调递增",
+      "base": "0x3FEE2",
+      "stride": 10,
+      "count": 24,
+      "type": "u16be",
+      "expr": "round(v * 2 + 40)",
+      "clamp": [1, 9999],
+      "group_sizes": [4, 5, 4, 3, 4, 4],
+      "monotonic": "grow"
+    }
+  ]
+}

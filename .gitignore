@@ -1,0 +1,7 @@
+# binaries / roms / build artifacts
+*.bin
+*.md.gen
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

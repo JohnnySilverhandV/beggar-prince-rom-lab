@@ -1,0 +1,56 @@
+===== 0xD44E0-0xD45A0 (spell dispatch) =====
+  00d44e0  67 12                    beq.b    $d44f4
+  00d44e2  48 79 00 00 55 fc        pea.l    $55fc.l
+  00d44e8  48 79 00 00 53 f0        pea.l    $53f0.l
+  00d44ee  4e b9 00 0a b7 34        jsr      $ab734.l
+  00d44f4  4c ee 00 1c ff f4        movem.l  -$c(a6), d2-d4
+  00d44fa  4e 5e                    unlk     a6
+  00d44fc  4e 75                    rts      
+  00d44fe  4e 56 00 00              link.w   a6, #$0
+  00d4502  48 e7 3c 00              movem.l  d2-d5, -(a7)
+  00d4506  2a 2e 00 08              move.l   $8(a6), d5
+  00d450a  30 05                    move.w   d5, d0
+  00d450c  48 c0                    ext.l    d0
+  00d450e  d0 b9 00 ff 00 d2        add.l    $ff00d2.l, d0
+  00d4514  20 40                    movea.l  d0, a0
+  00d4516  0c 28 00 01 00 18        cmpi.b   #$1, $18(a0)
+  00d451c  62 76                    bhi.b    $d4594
+  00d451e  42 43                    clr.w    d3
+  00d4520  42 42                    clr.w    d2
+  00d4522  60 14                    bra.b    $d4538
+  00d4524  20 7c 00 04 3a bc        movea.l  #$43abc, a0
+  00d452a  10 30 20 00              move.b   (a0, d2.w), d0
+  00d452e  02 80 00 00 00 ff        andi.l   #$ff, d0
+  00d4534  d6 40                    add.w    d0, d3
+  00d4536  52 42                    addq.w   #$1, d2
+  00d4538  b4 79 00 ff 03 ac        cmp.w    $ff03ac.l, d2
+  00d453e  6d e4                    blt.b    $d4524
+  00d4540  13 c3 00 ff 03 8b        move.b   d3, $ff038b.l
+  00d4546  42 42                    clr.w    d2
+  00d4548  38 03                    move.w   d3, d4
+  00d454a  60 22                    bra.b    $d456e
+  00d454c  52 39 00 ff 03 8b        addq.b   #$1, $ff038b.l
+  00d4552  52 44                    addq.w   #$1, d4
+  00d4554  20 7c 00 ff 1f 04        movea.l  #$ff1f04, a0
+  00d455a  4a 30 40 00              tst.b    (a0, d4.w)
+  00d455e  67 ec                    beq.b    $d454c
+  00d4560  b4 45                    cmp.w    d5, d2
+  00d4562  67 0e                    beq.b    $d4572
+  00d4564  52 39 00 ff 03 8b        addq.b   #$1, $ff038b.l
+  00d456a  52 44                    addq.w   #$1, d4
+  00d456c  52 42                    addq.w   #$1, d2
+  00d456e  b4 45                    cmp.w    d5, d2
+  00d4570  6f e2                    ble.b    $d4554
+  00d4572  48 78 00 02              pea.l    $2.w
+  00d4576  4e b9 00 0a b7 a4        jsr      $ab7a4.l
+  00d457c  0c 39 00 1d 00 ff 03 8b  cmpi.b   #$1d, $ff038b.l
+  00d4584  64 08                    bcc.b    $d458e
+  00d4586  4e b9 00 0d 12 8e        jsr      $d128e.l
+  00d458c  60 06                    bra.b    $d4594
+  00d458e  4e b9 00 0d 17 1a        jsr      $d171a.l
+  00d4594  4c ee 00 3c ff f0        movem.l  -$10(a6), d2-d5
+  00d459a  4e 5e                    unlk     a6
+  00d459c  4e 75                    rts      
+  00d459e  4e 56                    link.w   a6, #$aaaa
+
+===== callers of 0xD44xx dispatch region: find fn entry =====
